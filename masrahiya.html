@@ -290,6 +290,22 @@
       transform: translateY(-2px);
     }
 
+    /* فيديو المسرحية */
+    .video-wrap {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 1.2rem;
+      box-shadow: 0 10px 40px rgba(45,90,58,0.18);
+      border: 1px solid rgba(45,90,58,0.12);
+      background: #0a0a0a;
+    }
+    .video-wrap video {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
     /* موبايل */
     @media (max-width: 768px) {
       nav { padding: 0.8rem 1.2rem; }
@@ -414,6 +430,23 @@
         <h4>الموسيقى</h4>
         <span>فريق نثار الضوء</span>
       </div>
+    </div>
+  </div>
+
+  <div class="divider"><span>✦</span></div>
+
+  <!-- فيديو المسرحية -->
+  <div class="content-section fade-in">
+    <p class="content-label">لقطات من العرض</p>
+    <h2>شاهدوا المسرحية</h2>
+    <p>
+      لمحة من العرض الحي — الضوء، الصمت، وصوت الذاكرة وهي تقاوم النسيان.
+    </p>
+    <div class="video-wrap">
+      <video controls preload="metadata" playsinline>
+        <source src="trailer.mp4" type="video/mp4">
+        متصفحك لا يدعم تشغيل الفيديو.
+      </video>
     </div>
   </div>
 
