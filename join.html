@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>انضم إلينا — نثار الضوء</title>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --olive: #2d5a3a;
+      --sage: #4a7c59;
+      --red: #c0392b;
+      --cream: #3a2010;
+      --bg: #f5efe3;
+      --bg2: #ede5d5;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: 'Tajawal', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top:0; right:0; left:0; z-index:100;
+      padding: 1rem 2rem;
+      background: rgba(245,239,227,0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(45,90,58,0.12);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+
+    .back-btn {
+      display: flex; align-items: center; gap: 0.5rem;
+      color: var(--olive); text-decoration: none;
+      font-size: 0.95rem; font-weight: 600;
+      transition: gap 0.2s;
+    }
+    .back-btn:hover { gap: 0.8rem; }
+
+    .nav-brand {
+      font-family: 'Amiri', serif;
+      font-size: 1.2rem; color: var(--olive);
+      text-decoration: none;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 45vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(160deg, #1a3520 0%, #2d5a3a 50%, #1a0f08 100%);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 50%, rgba(184,116,26,0.12) 0%, transparent 70%),
+        radial-gradient(circle at 20% 80%, rgba(192,57,43,0.1) 0%, transparent 50%);
+    }
+
+    /* زخرفة تطريز */
+    .hero-pattern {
+      position: absolute; bottom: 0; left:0; right:0;
+      height: 6px;
+      background: repeating-linear-gradient(
+        90deg,
+        #c0392b 0px, #c0392b 10px,
+        #2d5a3a 10px, #2d5a3a 20px,
+        #b8741a 20px, #b8741a 30px,
+        #2d5a3a 30px, #2d5a3a 40px
+      );
+      opacity: 0.7;
+    }
+
+    .hero-content { position:relative; z-index:2; }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 99px; padding: 0.35rem 1.2rem;
+      font-size: 0.82rem; color: rgba(253,250,245,0.85);
+      letter-spacing: 0.1em; margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-family: 'Amiri', serif;
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      color: #fdfaf5; line-height: 1.15;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: #e8b84b;
+    }
+
+    .hero p {
+      font-size: 1.05rem; color: rgba(253,250,245,0.65);
+      line-height: 1.8; max-width: 500px; margin: 0 auto;
+    }
+
+    /* FORM SECTION */
+    .form-section {
+      max-width: 680px; margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    /* مميزات الانضمام */
+    .perks {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem; margin-bottom: 3rem;
+    }
+
+    .perk-card {
+      background: rgba(255,255,255,0.6);
+      border: 1px solid rgba(45,90,58,0.12);
+      border-radius: 10px; padding: 1.2rem;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .perk-card:hover { transform: translateY(-3px); }
+
+    .perk-card .icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+    .perk-card h4 { font-family: 'Amiri', serif; font-size: 1rem; color: var(--olive); margin-bottom: 0.2rem; }
+    .perk-card p { font-size: 0.8rem; opacity: 0.6; line-height: 1.5; }
+
+    /* الفورم */
+    .form-card {
+      background: rgba(255,255,255,0.75);
+      border: 1px solid rgba(45,90,58,0.15);
+      border-radius: 14px; padding: 2.5rem 2rem;
+      box-shadow: 0 8px 40px rgba(45,90,58,0.08);
+    }
+
+    .form-title {
+      font-family: 'Amiri', serif;
+      font-size: 1.8rem; color: var(--olive);
+      margin-bottom: 0.4rem;
+    }
+
+    .form-sub {
+      font-size: 0.9rem; opacity: 0.6;
+      margin-bottom: 2rem; line-height: 1.6;
+    }
+
+    .field { margin-bottom: 1.3rem; }
+
+    label {
+      display: block;
+      font-size: 0.8rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--sage);
+      margin-bottom: 0.45rem; font-weight: 600;
+    }
+
+    input, select {
+      width: 100%; padding: 0.85rem 1rem;
+      border-radius: 7px;
+      border: 1.5px solid rgba(45,90,58,0.18);
+      background: rgba(255,255,255,0.95);
+      font-family: 'Tajawal', sans-serif;
+      font-size: 1rem; color: var(--cream);
+      outline: none; direction: rtl;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--olive);
+      box-shadow: 0 0 0 3px rgba(45,90,58,0.1);
+    }
+
+    /* المهارات */
+    .skills-label {
+      font-size: 0.8rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--sage);
+      margin-bottom: 0.45rem; font-weight: 600;
+      display: block;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 0.6rem; margin-bottom: 0.8rem;
+    }
+
+    .skill-btn {
+      padding: 0.55rem 0.8rem; border-radius: 7px;
+      border: 1.5px solid rgba(45,90,58,0.18);
+      background: rgba(255,255,255,0.9);
+      font-family: 'Tajawal', sans-serif;
+      font-size: 0.88rem; color: var(--cream);
+      cursor: pointer; text-align: center;
+      transition: all 0.2s;
+    }
+
+    .skill-btn:hover {
+      border-color: var(--olive);
+      background: rgba(45,90,58,0.06);
+    }
+
+    .skill-btn.selected {
+      background: var(--olive);
+      border-color: var(--olive);
+      color: #fdfaf5;
+    }
+
+    /* فاصل */
+    .divider {
+      display: flex; align-items: center; gap: 1rem;
+      margin: 1.5rem 0; opacity: 0.35;
+    }
+    .divider::before, .divider::after {
+      content: ''; flex:1; height:1px; background: var(--olive);
+    }
+    .divider span { font-size: 0.75rem; white-space: nowrap; }
+
+    /* زر الإرسال */
+    .submit-btn {
+      width: 100%; padding: 1rem;
+      border-radius: 8px; border: none;
+      background: var(--olive); color: #fdfaf5;
+      font-family: 'Tajawal', sans-serif;
+      font-size: 1.05rem; font-weight: 700;
+      cursor: pointer; letter-spacing: 0.05em;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 0.5rem;
+    }
+
+    .submit-btn:hover {
+      background: var(--sage);
+      transform: translateY(-2px);
+    }
+
+    /* رسالة النجاح */
+    .success-box {
+      display: none; text-align: center; padding: 3rem 1rem;
+    }
+
+    .success-box .big-icon { font-size: 4rem; margin-bottom: 1rem; }
+
+    .success-box h2 {
+      font-family: 'Amiri', serif;
+      font-size: 2rem; color: var(--olive); margin-bottom: 0.8rem;
+    }
+
+    .success-box p {
+      opacity: 0.7; line-height: 1.8; margin-bottom: 1.5rem;
+    }
+
+    .success-box a {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      color: var(--olive); text-decoration: none;
+      font-weight: 600; font-size: 0.95rem;
+      border-bottom: 1px solid rgba(45,90,58,0.3);
+      padding-bottom: 0.1rem;
+      transition: border-color 0.2s;
+    }
+
+    .success-box a:hover { border-color: var(--olive); }
+
+    /* موبايل */
+    @media (max-width: 768px) {
+      nav { padding: 0.8rem 1.2rem; }
+      .hero { padding: 7rem 1.2rem 3.5rem; min-height: 40vh; }
+      .form-section { padding: 2.5rem 1.2rem 4rem; }
+      .form-card { padding: 1.8rem 1.2rem; }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .perks { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* Fade */
+    .fade-in { opacity:0; transform:translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity:1; transform:translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="back-btn">→ العودة للموقع</a>
+  <a href="index.html" class="nav-brand">نثار الضوء</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">🌿 كن جزءاً من القضية</div>
+    <h1>انضم إلى<br><em>نثار الضوء</em></h1>
+    <p>إذا كنت تؤمن بأن الثقافة سلاح وفلسطين قضية، فمكانك معنا 🇵🇸</p>
+  </div>
+  <div class="hero-pattern"></div>
+</div>
+
+<!-- FORM SECTION -->
+<div class="form-section">
+
+  <!-- مميزات -->
+  <div class="perks fade-in">
+    <div class="perk-card">
+      <div class="icon">🎭</div>
+      <h4>شارك في الفعاليات</h4>
+      <p>مسرحيات، أمسيات شعرية، معارض فنية</p>
+    </div>
+    <div class="perk-card">
+      <div class="icon">🤝</div>
+      <h4>كن صوتاً لفلسطين</h4>
+      <p>نوصل صوت القضية لأكبر عدد ممكن</p>
+    </div>
+    <div class="perk-card">
+      <div class="icon">✨</div>
+      <h4>طوّر مهاراتك</h4>
+      <p>ورش وتدريبات مع فريق شغوف</p>
+    </div>
+  </div>
+
+  <!-- الفورم -->
+  <div class="form-card fade-in">
+    <div id="joinForm">
+      <h2 class="form-title">سجّل اهتمامك</h2>
+      <p class="form-sub">أكمل المعلومات التالية وسنتواصل معك في أقرب وقت</p>
+
+      <!-- الاسم -->
+      <div class="field">
+        <label>الاسم الكامل *</label>
+        <input id="joinName" type="text" placeholder="اكتب اسمك هنا...">
+      </div>
+
+      <!-- العمر -->
+      <div class="field">
+        <label>العمر *</label>
+        <input id="joinAge" type="number" placeholder="عمرك..." min="14" max="60">
+      </div>
+
+      <!-- الولاية -->
+      <div class="field">
+        <label>الولاية *</label>
+        <select id="joinWilaya">
+          <option value="">اختر ولايتك...</option>
+          <option>أدرار</option><option>الشلف</option><option>الأغواط</option>
+          <option>أم البواقي</option><option>باتنة</option><option>بجاية</option>
+          <option>بسكرة</option><option>بشار</option><option>البليدة</option>
+          <option>البويرة</option><option>تمنراست</option><option>تبسة</option>
+          <option>تلمسان</option><option>تيارت</option><option>تيزي وزو</option>
+          <option>الجزائر العاصمة</option><option>الجلفة</option><option>جيجل</option>
+          <option>سطيف</option><option>سعيدة</option><option>سكيكدة</option>
+          <option>سيدي بلعباس</option><option>عنابة</option><option>قالمة</option>
+          <option>قسنطينة</option><option>المدية</option><option>مستغانم</option>
+          <option>المسيلة</option><option>معسكر</option><option>ورقلة</option>
+          <option>وهران</option><option>البيض</option><option>إليزي</option>
+          <option>برج بوعريريج</option><option>بومرداس</option><option>الطارف</option>
+          <option>تندوف</option><option>تيسمسيلت</option><option>الوادي</option>
+          <option>خنشلة</option><option>سوق أهراس</option><option>تيبازة</option>
+          <option>ميلة</option><option>عين الدفلى</option><option>النعامة</option>
+          <option>عين تموشنت</option><option>غرداية</option><option>غليزان</option>
+          <option>تيميمون</option><option>برج باجي مختار</option><option>أولاد جلال</option>
+          <option>بني عباس</option><option>عين صالح</option><option>عين قزام</option>
+          <option>توقرت</option><option>جانت</option><option>المغير</option><option>المنيعة</option>
+        </select>
+      </div>
+
+      <!-- المهارات -->
+      <div class="field">
+        <span class="skills-label">مهارتك / ما تقدر تقدمه *</span>
+        <div class="skills-grid" id="skillsGrid"></div>
+        <input id="joinSkillOther" type="text" placeholder="أو اكتب مهارة أخرى...">
+      </div>
+
+      <div class="divider"><span>سيصلك ردنا عبر واتساب</span></div>
+
+      <button class="submit-btn" onclick="submitJoin()">
+        🌿 أريد الانضمام لنثار الضوء
+      </button>
+    </div>
+
+    <!-- رسالة النجاح -->
+    <div class="success-box" id="joinSuccess">
+      <div class="big-icon">🎉</div>
+      <h2>أهلاً بك في نثار الضوء!</h2>
+      <p>وصلنا طلبك، سنتواصل معك قريباً عبر واتساب.<br>فلسطين في قلوبنا دائماً 🇵🇸</p>
+      <a href="index.html">→ العودة للموقع الرئيسي</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // المهارات
+  const skills = [
+    { icon: '🎭', label: 'تمثيل' },
+    { icon: '🎨', label: 'تصميم' },
+    { icon: '✍️', label: 'كتابة' },
+    { icon: '📸', label: 'تصوير' },
+    { icon: '🎵', label: 'موسيقى' },
+    { icon: '💻', label: 'برمجة' },
+    { icon: '🎤', label: 'إلقاء شعر' },
+    { icon: '📢', label: 'إعلام' },
+    { icon: '🤝', label: 'تنظيم فعاليات' },
+  ];
+
+  const selectedSkills = new Set();
+  const grid = document.getElementById('skillsGrid');
+
+  skills.forEach(s => {
+    const btn = document.createElement('button');
+    btn.className = 'skill-btn';
+    btn.type = 'button';
+    btn.innerHTML = `${s.icon} ${s.label}`;
+    btn.addEventListener('click', () => {
+      if (selectedSkills.has(s.label)) {
+        selectedSkills.delete(s.label);
+        btn.classList.remove('selected');
+      } else {
+        selectedSkills.add(s.label);
+        btn.classList.add('selected');
+      }
+    });
+    grid.appendChild(btn);
+  });
+
+  // الإرسال
+  function submitJoin() {
+    const name    = document.getElementById('joinName').value.trim();
+    const age     = document.getElementById('joinAge').value.trim();
+    const wilaya  = document.getElementById('joinWilaya').value;
+    const other   = document.getElementById('joinSkillOther').value.trim();
+    const allSkills = [...selectedSkills, other].filter(Boolean).join('، ');
+
+    if (!name || !age || !wilaya) {
+      alert('رجاءً أكمل جميع الحقول المطلوبة ⚠️');
+      return;
+    }
+
+    // ← غيّر الرقم لرقمك الحقيقي بدون + (مثال: 213555123456)
+    const phone = '213000000000';
+    const msg = encodeURIComponent(
+      `طلب انضمام جديد 🌿\n\n👤 الاسم: ${name}\n🎂 العمر: ${age}\n📍 الولاية: ${wilaya}\n💡 المهارات: ${allSkills || 'لم يحدد'}`
+    );
+    window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
+
+    document.getElementById('joinForm').style.display = 'none';
+    document.getElementById('joinSuccess').style.display = 'block';
+  }
+
+  // Fade in
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 150);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

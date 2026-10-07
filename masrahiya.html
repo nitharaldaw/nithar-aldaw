@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>كيف أفقد ذاكرتي — نثار الضوء</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --olive: #2d5a3a;
+      --sage: #4a7c59;
+      --red: #c0392b;
+      --gold: #b8741a;
+      --cream: #3a2010;
+      --bg: #f5efe3;
+      --bg2: #ede5d5;
+      --white: #fdfaf5;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: 'Tajawal', sans-serif;
+      direction: rtl;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top:0; right:0; left:0; z-index:100;
+      padding: 1rem 2rem;
+      background: rgba(245,239,227,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(45,90,58,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .back-btn {
+      display: flex; align-items: center; gap: 0.5rem;
+      color: var(--olive); text-decoration: none;
+      font-size: 0.95rem; font-weight: 500;
+      transition: gap 0.2s;
+    }
+    .back-btn:hover { gap: 0.8rem; }
+    .back-btn span { font-size: 1.1rem; }
+
+    .nav-logo {
+      font-family: 'Amiri', serif;
+      font-size: 1.2rem;
+      color: var(--olive);
+      text-decoration: none;
+    }
+
+    /* HERO المسرحية */
+    .play-hero {
+      min-height: 70vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(160deg, #0a0a0a 0%, #1a0808 40%, #2d0a0a 70%, #1a1a08 100%);
+    }
+
+    .play-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 30% 50%, rgba(192,57,43,0.2) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 60% at 70% 40%, rgba(45,90,58,0.15) 0%, transparent 60%);
+    }
+
+    /* خطوط المسرح */
+    .stage-lines {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 80px,
+          rgba(255,255,255,0.015) 80px,
+          rgba(255,255,255,0.015) 81px
+        );
+    }
+
+    /* ضوء المسرح */
+    .spotlight {
+      position: absolute;
+      top: -100px; left: 50%; transform: translateX(-50%);
+      width: 300px; height: 500px;
+      background: conic-gradient(from 170deg at 50% 0%, transparent 0deg, rgba(255,220,150,0.06) 20deg, transparent 40deg);
+      pointer-events: none;
+    }
+
+    .play-hero-content {
+      position: relative; z-index: 2;
+      max-width: 800px; margin: 0 auto; width: 100%;
+    }
+
+    .play-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(192,57,43,0.85);
+      color: #fff; font-size: 0.8rem;
+      padding: 0.35rem 1rem; border-radius: 99px;
+      margin-bottom: 1.5rem; letter-spacing: 0.1em;
+    }
+
+    .play-title {
+      font-family: 'Amiri', serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      line-height: 1.1;
+      color: #fdfaf5;
+      text-shadow: 0 2px 30px rgba(0,0,0,0.5);
+      margin-bottom: 1rem;
+    }
+
+    .play-subtitle {
+      font-size: 1rem;
+      color: rgba(253,250,245,0.6);
+      letter-spacing: 0.1em;
+      margin-bottom: 2rem;
+    }
+
+    .play-meta {
+      display: flex; flex-wrap: wrap; gap: 1rem;
+    }
+
+    .meta-pill {
+      display: flex; align-items: center; gap: 0.4rem;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 6px; padding: 0.4rem 0.9rem;
+      font-size: 0.85rem; color: rgba(253,250,245,0.8);
+    }
+
+    /* المحتوى */
+    .play-content {
+      max-width: 800px; margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .content-section {
+      margin-bottom: 3rem;
+    }
+
+    .content-label {
+      font-size: 0.72rem; letter-spacing: 0.25em;
+      text-transform: uppercase; color: var(--sage);
+      margin-bottom: 0.8rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+
+    .content-label::before {
+      content: ''; width: 20px; height: 1px;
+      background: var(--sage);
+    }
+
+    .content-section h2 {
+      font-family: 'Amiri', serif;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      color: var(--olive);
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+
+    .content-section p {
+      font-size: 1.05rem; line-height: 1.9;
+      color: var(--cream); opacity: 0.85;
+      margin-bottom: 1rem;
+    }
+
+    /* اقتباس مسرحي */
+    .play-quote {
+      background: linear-gradient(135deg, rgba(45,90,58,0.08), rgba(192,57,43,0.06));
+      border-right: 3px solid var(--red);
+      border-radius: 0 8px 8px 0;
+      padding: 1.5rem 1.8rem;
+      margin: 2rem 0;
+      position: relative;
+    }
+
+    .play-quote::before {
+      content: '"';
+      position: absolute; top: -1rem; right: 1rem;
+      font-family: 'Amiri', serif; font-size: 4rem;
+      color: var(--red); opacity: 0.2; line-height: 1;
+    }
+
+    .play-quote p {
+      font-family: 'Amiri', serif;
+      font-size: 1.3rem; font-style: italic;
+      color: var(--olive); opacity: 1 !important;
+      line-height: 1.7;
+    }
+
+    /* فريق العمل */
+    .crew-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem; margin-top: 1.2rem;
+    }
+
+    .crew-card {
+      background: rgba(255,255,255,0.6);
+      border: 1px solid rgba(45,90,58,0.12);
+      border-radius: 8px; padding: 1.2rem;
+      text-align: center;
+    }
+
+    .crew-icon {
+      font-size: 1.8rem; margin-bottom: 0.5rem;
+    }
+
+    .crew-card h4 {
+      font-family: 'Amiri', serif;
+      font-size: 1rem; color: var(--olive);
+      margin-bottom: 0.2rem;
+    }
+
+    .crew-card span {
+      font-size: 0.75rem; color: var(--sage);
+      letter-spacing: 0.05em;
+    }
+
+    /* مشاهد المسرحية */
+    .scenes {
+      display: flex; flex-direction: column; gap: 1rem;
+      margin-top: 1.2rem;
+    }
+
+    .scene-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+      background: rgba(255,255,255,0.5);
+      border: 1px solid rgba(45,90,58,0.1);
+      border-radius: 8px; padding: 1.2rem;
+    }
+
+    .scene-num {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--olive); color: #fdfaf5;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Amiri', serif; font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .scene-item h4 {
+      font-family: 'Amiri', serif; font-size: 1.05rem;
+      color: var(--olive); margin-bottom: 0.3rem;
+    }
+
+    .scene-item p {
+      font-size: 0.9rem; line-height: 1.6;
+      opacity: 0.75; margin: 0;
+    }
+
+    /* فاصل زخرفي */
+    .divider {
+      display: flex; align-items: center;
+      gap: 1rem; margin: 2.5rem 0;
+      opacity: 0.4;
+    }
+    .divider::before, .divider::after {
+      content: ''; flex: 1; height: 1px;
+      background: var(--olive);
+    }
+    .divider span { font-size: 1.2rem; }
+
+    /* زر العودة في الأسفل */
+    .back-section {
+      text-align: center; padding: 3rem 2rem;
+      background: var(--bg2);
+      border-top: 1px solid rgba(45,90,58,0.1);
+    }
+
+    .back-section a {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: var(--olive); color: #fdfaf5;
+      text-decoration: none; padding: 0.85rem 2rem;
+      border-radius: 6px; font-size: 0.95rem; font-weight: 600;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .back-section a:hover {
+      background: var(--sage);
+      transform: translateY(-2px);
+    }
+
+    /* فيديو المسرحية */
+    .video-wrap {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 1.2rem;
+      box-shadow: 0 10px 40px rgba(45,90,58,0.18);
+      border: 1px solid rgba(45,90,58,0.12);
+      background: #0a0a0a;
+    }
+    .video-wrap video {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* موبايل */
+    @media (max-width: 768px) {
+      nav { padding: 0.8rem 1.2rem; }
+      .play-hero { padding: 7rem 1.2rem 3rem; min-height: 60vh; }
+      .play-content { padding: 3rem 1.2rem; }
+      .crew-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* Fade in */
+    .fade-in { opacity:0; transform:translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-in.visible { opacity:1; transform:translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="back-btn">
+    <span>→</span> العودة للموقع
+  </a>
+  <a href="index.html" class="nav-logo">نثار الضوء</a>
+</nav>
+
+<!-- HERO -->
+<div class="play-hero">
+  <div class="stage-lines"></div>
+  <div class="spotlight"></div>
+  <div class="play-hero-content">
+    <div class="play-badge">🎭 عرض مسرحي</div>
+    <h1 class="play-title">كيف أفقد<br>ذاكرتي</h1>
+    <p class="play-subtitle">نثار الضوء · الجزائر العاصمة · 2025</p>
+    <div class="play-meta">
+      <div class="meta-pill">📍 الجزائر العاصمة</div>
+      <div class="meta-pill">🗓️ 2025</div>
+      <div class="meta-pill">⏱️ عرض مسرحي</div>
+      <div class="meta-pill">🇵🇸 قضية فلسطين</div>
+    </div>
+  </div>
+</div>
+
+<!-- المحتوى -->
+<div class="play-content">
+
+  <!-- عن المسرحية -->
+  <div class="content-section fade-in">
+    <p class="content-label">عن المسرحية</p>
+    <h2>حين تصبح الذاكرة آخر الحصون</h2>
+    <p>
+      في غرفة التحقيق الباردة، حيث الضوء الأبيض لا يرحم والأسئلة تتساقط كالمطر، يجد أسير فلسطيني نفسه في مواجهة مختلفة تماماً — ليست معركة الجسد، بل معركة الذاكرة والهوية.
+    </p>
+    <p>
+      "كيف أفقد ذاكرتي" ليست مسرحية عن الخسارة، بل عن الإصرار على التذكّر. عن تلك اللحظات التي يصبح فيها اسم قرية، ورائحة الزعتر، وصوت الأم — درعاً أمام كل محاولات المحو.
+    </p>
+
+    <div class="play-quote">
+      <p>يأخذون منك كل شيء... لكنهم لا يعرفون أن الذاكرة ليست في الرأس وحده — هي في كل حجر من هذه الأرض.</p>
+    </div>
+  </div>
+
+  <div class="divider"><span>✦</span></div>
+
+  <!-- المشاهد -->
+  <div class="content-section fade-in">
+    <p class="content-label">أبرز المشاهد</p>
+    <h2>رحلة داخل غرفة التحقيق</h2>
+    <div class="scenes">
+      <div class="scene-item">
+        <div class="scene-num">١</div>
+        <div>
+          <h4>الدخول</h4>
+          <p>الأسير يدخل الغرفة — الصمت يملأ المسرح. فقط صوت الكرسي وضوء المصباح.</p>
+        </div>
+      </div>
+      <div class="scene-item">
+        <div class="scene-num">٢</div>
+        <div>
+          <h4>الأسئلة</h4>
+          <p>المحقق يحاول انتزاع الاعتراف، والأسير يرد بالذكريات — اسم أمه، شجرة الزيتون، شوارع المخيم.</p>
+        </div>
+      </div>
+      <div class="scene-item">
+        <div class="scene-num">٣</div>
+        <div>
+          <h4>المواجهة</h4>
+          <p>لحظة الذروة — حين يدرك المحقق أن الأسير لن يُكسر، وأن الذاكرة أقوى من كل قيد.</p>
+        </div>
+      </div>
+      <div class="scene-item">
+        <div class="scene-num">٤</div>
+        <div>
+          <h4>الخاتمة</h4>
+          <p>الأسير وحيداً في الظلام — لكن صوته يملأ المسرح بكلمات تحمل كل فلسطين.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"><span>✦</span></div>
+
+  <!-- فريق العمل -->
+  <div class="content-section fade-in">
+    <p class="content-label">فريق العمل</p>
+    <h2>من وراء الكواليس</h2>
+    <div class="crew-grid">
+      <div class="crew-card">
+        <div class="crew-icon">✍️</div>
+        <h4>نثار الضوء</h4>
+        <span>النص والإخراج</span>
+      </div>
+      <div class="crew-card">
+        <div class="crew-icon">🎭</div>
+        <h4>فريق التمثيل</h4>
+        <span>أعضاء نثار الضوء</span>
+      </div>
+      <div class="crew-card">
+        <div class="crew-icon">🎨</div>
+        <h4>التصميم والديكور</h4>
+        <span>فريق نثار الضوء</span>
+      </div>
+      <div class="crew-card">
+        <div class="crew-icon">🎵</div>
+        <h4>الموسيقى</h4>
+        <span>فريق نثار الضوء</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"><span>✦</span></div>
+
+  <!-- فيديو المسرحية -->
+  <div class="content-section fade-in">
+    <p class="content-label">لقطات من العرض</p>
+    <h2>شاهدوا المسرحية</h2>
+    <p>
+      لمحة من العرض الحي — الضوء، الصمت، وصوت الذاكرة وهي تقاوم النسيان.
+    </p>
+    <div class="video-wrap">
+      <video controls preload="metadata" playsinline>
+        <source src="trailer.mp4" type="video/mp4">
+        متصفحك لا يدعم تشغيل الفيديو.
+      </video>
+    </div>
+  </div>
+
+  <div class="divider"><span>✦</span></div>
+
+  <!-- صدى الجمهور -->
+  <div class="content-section fade-in">
+    <p class="content-label">صدى العرض</p>
+    <h2>ما قاله الجمهور</h2>
+    <p>
+      استقبل الجمهور الجزائري العرض بحرارة بالغة، وأثارت المسرحية مشاعر عميقة لدى الحضور الذين وجدوا فيها انعكاساً لروح التضامن المشترك بين الشعبين الجزائري والفلسطيني.
+    </p>
+    <div class="play-quote">
+      <p>شعرت وكأن الأسير على المسرح يحكي عن كل فلسطيني رفض أن ينسى — هذا هو الفن الحقيقي.</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- زر العودة -->
+<div class="back-section">
+  <a href="index.html">
+    → العودة إلى الموقع الرئيسي
+  </a>
+</div>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 120);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
